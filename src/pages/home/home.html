@@ -1,14 +1,31 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Log in
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div align="center"><h1>Log in!</h1></div>
+  <form [formGroup]="this.formgroup">
+    <ion-list >
+      <ion-item>
+          <ion-label floating color="primary">Username</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.username.hasError('required') && this.username.touched">
+        <p style="color:red;">Username is required</p>
+      </ion-item>
+      <ion-item>
+          <ion-label floating color="primary">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.password.hasError('required') && this.password.touched">
+          <p style="color:red;">Password is required</p>
+      </ion-item>
+    </ion-list>
+    <button ion-button block primary (click)="this.Login()">Log in</button>
+  <button ion-button block color="secondary" (click)="this.Register()">Register</button>
+  </form>
 </ion-content>

@@ -1,0 +1,53 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Register new user</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="this.formGroup">
+    <ion-list >
+      <ion-item>
+        <ion-label for="Username" floating color="primary">
+          Username
+        </ion-label>
+        <ion-input formControlName="username" name="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.username.hasError('required') && this.username.touched">
+        <p style="color:red;">Username is requierd</p>
+      </ion-item>
+      <ion-item>
+        <ion-label for="Password" floating color="primary">
+          Password
+        </ion-label>
+        <ion-input type="password" formControlName="password" name="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.password.hasError('required') && this.password.touched">
+        <p style="color:red;">Password is requierd</p>
+      </ion-item>
+      <ion-item>
+        <ion-label for="Repeat password" floating color="primary">
+          Repeat password
+        </ion-label>
+        <ion-input type="password" formControlName="repeatPassword" name="repeat" (input)="this.checkingPassword($event.target.value)" title="warning"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="this.repeatPassword.hasError('required') && this.repeatPassword.touched">
+        <p style="color:red;">Repeate the password is requierd</p>
+      </ion-item>
+      <ion-item *ngIf="this.repeatPassword.hasError('not_matching')">
+        <p style="color:red;">Passwords don't match</p>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button ion-button block color="secondary" (click)="this.registerUser()">Register</button>
+  <button ion-button block color="danger" (click)="this.dismiss()">Cancel</button>
+</ion-content>
