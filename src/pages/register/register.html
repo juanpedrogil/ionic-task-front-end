@@ -38,7 +38,7 @@
         <ion-label for="Repeat password" floating color="primary">
           Repeat password
         </ion-label>
-        <ion-input type="password" formControlName="repeatPassword" name="repeat" (input)="this.checkingPassword($event.target.value)" title="warning"></ion-input>
+        <ion-input type="password" formControlName="repeatPassword" name="repeat" title="warning"></ion-input>
       </ion-item>
       <ion-item *ngIf="this.repeatPassword.hasError('required') && this.repeatPassword.touched">
         <p style="color:red;">Repeate the password is requierd</p>

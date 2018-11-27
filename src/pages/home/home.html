@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle right>
+        <ion-icon name="settings"></ion-icon>
+    </button>
     <ion-title>
       Log in
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding scrollbar-y-auto>
   <div align="center"><h1>Log in!</h1></div>
   <form [formGroup]="this.formgroup">
     <ion-list >

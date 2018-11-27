@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ViewController } from "ionic-angular";
 import { FormBuilder, FormGroup, Validators, AbstractControl } from "@angular/forms";
 import { RepeatPassWordValidation } from "../../Validators/repeatPasswordValidator";
+import { Http } from "@angular/http";
 
 /**
  * Generated class for the RegisterPage page.
@@ -24,7 +25,9 @@ export class RegisterPage {
     user: '',
     password: ''
   }
-  constructor(public viewCtrl:ViewController, public formBuilder:FormBuilder) {
+  constructor(public viewCtrl:ViewController,
+    public formBuilder:FormBuilder,
+    public http:Http) {
     this.formGroup = formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -42,10 +45,18 @@ export class RegisterPage {
     //Execute when clicking the register button
     if(this.formGroup.valid) {
       //When each field has been filled correctly
-      alert('Form is valid')
+      this.http.post('http://localhost:3000/user/signup', {
+        "username": this.username.value,
+        "password": this.password.value
+      }).subscribe( data => {
+        alert(data.json().message)
+        this.dismiss()
+      }, err => {
+        alert(err.json().message)
+      })
     }else{
       //When some field has an error
-      alert('Please put fill every field!')
+      alert('Please fill all fields!')
     }
   }
   public dismiss():void {
